@@ -18,13 +18,13 @@ function playRound(humanSelection, computerSelection) {
     if (humanSelection.toLowerCase() == "rock" && computerSelection == "scissors" ||
         humanSelection.toLowerCase() == "paper" && computerSelection == "rock" ||
         humanSelection.toLowerCase() == "scissors" && computerSelection == "paper") {
-        return(1)
+        return(`${humanSelection} beats ${computerSelection}`)
     } else if (humanSelection.toLowerCase() == "rock" && computerSelection == "paper" ||
             humanSelection.toLowerCase() == "paper" && computerSelection == "scissors" ||
             humanSelection.toLowerCase() == "scissors" && computerSelection == "rock") {
-        return(-1)
+        return(`${computerSelection} beats ${humanSelection}`)
     } else if (humanSelection.toLowerCase() == computerSelection) {
-        return(0)
+        return(`${humanSelection} ties ${computerSelection}`)
     }
 }
 
@@ -57,5 +57,24 @@ function playGame() {
     }
 }
 
-playGame()
+// playGame()
+const rockBtn = document.querySelector("#rock-btn");
+const paperBtn = document.querySelector("#paper-btn");
+const scissorsBtn = document.querySelector("#scissors-btn");
 
+const resultsDiv = document.querySelector("#results-div");
+
+rockBtn.addEventListener("click", () => {
+    const computerChoice = getComputerChoice()
+    resultsDiv.textContent = playRound("rock", computerChoice)
+});
+
+paperBtn.addEventListener("click", () => {
+    const computerChoice = getComputerChoice()
+    resultsDiv.textContent = playRound("paper", computerChoice)
+});
+
+scissorsBtn.addEventListener("click", () => {
+    const computerChoice = getComputerChoice()
+    resultsDiv.textContent = playRound("scissors", computerChoice)
+});
